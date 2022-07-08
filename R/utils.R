@@ -567,8 +567,8 @@ read_vcf = function(fn, gr = NULL, hg = 'hg19', geno = NULL, swap.header = NULL,
         }
 
         if (geno){
-            for (g in  names(geno(vcf))){
-                geno = names(geno(vcf))
+            for (g in  names(VariantAnnotation::geno(vcf))){
+                geno = names(VariantAnnotation::geno(vcf))
                 warning(sprintf('Warning: Loading all geno fields:\n\t%s', paste(geno, collapse = ',')))
             }
         }
@@ -578,7 +578,7 @@ read_vcf = function(fn, gr = NULL, hg = 'hg19', geno = NULL, swap.header = NULL,
         if (length(g) > 0){
 
             for (g in geno){
-                m = as.data.frame(geno(vcf)[[g]])
+                m = as.data.frame(VariantAnnotation::geno(vcf)[[g]])
                 names(m) = paste(g, names(m), sep = '_')
                 if (is.null(gt)){
                     gt = m
